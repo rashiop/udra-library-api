@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
 
 import config from '../../config';
-import AppError from '../../utils/error';
+import { commonErrors } from '../../lib/errorManagement';
 import { Gender, IUser, IUserBase, IUserBaseDoc, Role } from './user.type';
 
 
@@ -83,11 +83,8 @@ UserSchema.method({
     try {
       const valid = await bcrypt.compare(password, passwordHash);
       if (!valid) {
-        throw new AppError({
-          name: 'Invalid username/password',
-          description: 'Invalid username/password',
-          httpCode: 401,
-          isOperational: true
+        throw commonErrors.UnauthorizedError({
+          message: 'Invalid username/password'
         })
       }
     } catch(ex) {
