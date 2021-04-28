@@ -1,4 +1,4 @@
-import { crudControllers } from '../../utils/crud';
+import { crudControllers } from '../../lib/crud';
 import { User } from './user.model';
 
 /* export const me = (req, res) => {

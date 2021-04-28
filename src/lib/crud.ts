@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Model } from 'mongoose';
 
-import { commonErrors } from '../lib/errorManagement';
+import { commonErrors } from './errorManagement';
 
 export const getOne = (model: Model<any>) => async(req: Request, res: Response) => {
   try {

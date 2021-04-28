@@ -1,9 +1,9 @@
 import { app } from './app';
 import config from './config';
-import connectDB from './utils/db';
+import connectDB from './lib/db';
 
 
-app.disable('x-powered-by');
+// app.disable('x-powered-by');
 
 start();
 
