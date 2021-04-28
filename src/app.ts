@@ -1,6 +1,7 @@
 import { json, urlencoded } from 'body-parser';
 import cors from 'cors';
 import express from 'express';
+import helmet from 'helmet';
 
 import errorHandler from './lib/errorManagement/handler';
 import morganMiddleware from './lib/logger/morgan';
@@ -10,6 +11,7 @@ import { userRouter } from './resources/user';
 export const app = express()
 
 app.use(cors())
+app.use(helmet())
 app.use(json())
 app.use(urlencoded({ extended: true}))
 app.use(morganMiddleware)
