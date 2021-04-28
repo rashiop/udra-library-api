@@ -4,6 +4,7 @@ class AppError extends Error {
   public readonly name: string;
   public readonly httpCode: number;
   public readonly innerException?: string;
+  public readonly isOperational: boolean;
 
   constructor({
     httpCode,
@@ -15,6 +16,7 @@ class AppError extends Error {
     this.httpCode = httpCode;
     this.name = name;
     this.innerException = innerException;
+    this.isOperational = true;
   }
 
   toString() {
