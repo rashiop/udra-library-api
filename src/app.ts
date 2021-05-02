@@ -17,7 +17,6 @@ app.use(helmet())
 app.use(json())
 app.use(urlencoded({ extended: true}))
 app.use(morganMiddleware)
-// app.use(errorHandler)
 
 app.use('/signin', signin)
 app.use('/signup', signup)
@@ -29,7 +28,7 @@ app.use('/api/v1/user', userRouter)
 
 
 app.use((err, _req, res, next) => {
-  if (err == null) return next();
+  if (err == null) return next()
   errorHandler(err, res)
 })
 

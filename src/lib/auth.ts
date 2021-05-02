@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import config from '../config';
 import { IUserDoc, User } from '../resources/user';
-import { commonErrors } from './errorManagement';
+import { commonErrors, ErrorStatus } from './errorManagement';
 
 const newToken = (user: IUserDoc) => {
   return jwt.sign({
@@ -12,10 +12,10 @@ const newToken = (user: IUserDoc) => {
     config.secrets.jwt,
   {
     expiresIn: config.secrets.jwt_exp
-  });
+  })
 }
 
-const verifyToken = async(token: string) => await jwt.verify(token, config.secrets.jwt);
+const verifyToken = async(token: string) => await jwt.verify(token, config.secrets.jwt)
 
 
 export const signup = async(req: Request, res: Response) => {
@@ -30,9 +30,9 @@ export const signup = async(req: Request, res: Response) => {
       })
     }
 
-    const user = await User.create(req.body);
-    const token = newToken(user);
-    return res.status(201).json({ token });
+    const user = await User.create(req.body)
+    const token = newToken(user)
+    return res.status(201).json({ token })
   } catch(ex) {
     return res.status(ex.httpCode || 400).send({
       error: ex.message
@@ -48,25 +48,25 @@ export const signin = async(req: Request, res: Response) => {
       })
     }
 
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email })
     if (!user) {
       throw commonErrors.UnauthorizedError({
         message: 'Invalid User'
       })
     }
-    const match = await user.checkPassword(req.body.password);
+    const match = await user.checkPassword(req.body.password)
     if (!match) {
       throw commonErrors.UnauthorizedError({
           message: 'Invalid username/password'
       })
     }
 
-    const token = newToken(user);
-    return res.status(200).json({ token });
+    const token = newToken(user)
+    return res.status(200).json({ token })
   } catch(ex) {
     return res.status(ex.httpCode || 401).send({
       message: ex.message
-    });
+    })
   }
 }
 
@@ -76,25 +76,37 @@ export const protect = async(req: Request, res: Response, next: NextFunction) =>
     if (!req.headers.authorization) {
       throw commonErrors.UnauthorizedError({
         message: 'Unauthorized'
-      });
+      })
     }
 
     const payload = await verifyToken(
       req.headers.authorization.split('Bearer ')[1]
-    );
+    )
     const user = await User
       .findById((<any>payload).userId)
       .select('-password')
       .lean()
-      .exec();
+      .exec()
     
     if (user) {
-      req['user'] = user;
-      return next();
+      req['user'] = user
+      return next()
     }
   } catch(ex) {
     return res.status(ex.httpCode).send({
       error: ex.message
     })
+  }
+}
+
+export const checkPermission = (...permittedRoles) => {
+  console.log('permittedRoles',permittedRoles);
+  return (req: Request, res: Response, next: NextFunction) => {
+    const user = req['user']
+    console.log(permittedRoles.includes(user.role), user.role)
+    if (user && permittedRoles.includes(user.role)) {
+      return next()
+    }
+    return res.status(ErrorStatus.OperationNotAllowed).json({ message: 'Forbidden' })
   }
 }

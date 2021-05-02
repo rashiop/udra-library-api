@@ -1,18 +1,29 @@
 import { Router } from 'express';
 
-import controller from './author.controller';
+import { checkPermission } from '../../lib/auth';
+import { Role } from '../user';
+import authorController from './author.controller';
 
 const router = Router();
 
 router
   .route('/')
-  .get(controller.getMany)
-  .post(controller.createOne)
+  .get(authorController.getMany)
+  .post(
+    checkPermission(Role.ADMIN, Role.SUPER_ADMIN),
+    authorController.createOne
+  )
 
 router
   .route('/:id')
-  .get(controller.getOneById)
-  .patch(controller.updateOne)
-  .delete(controller.removeOne)
+  .get(authorController.getOneById)
+  .patch(
+    checkPermission(Role.ADMIN, Role.SUPER_ADMIN),
+    authorController.updateOne
+  )
+  .delete(
+    checkPermission(Role.ADMIN, Role.SUPER_ADMIN),
+    authorController.removeOne
+  )
 
 export default router;

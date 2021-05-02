@@ -2,9 +2,6 @@ import { app } from './app';
 import config from './config';
 import connectDB from './lib/db';
 
-
-// app.disable('x-powered-by');
-
 start();
 
 async function start() {
