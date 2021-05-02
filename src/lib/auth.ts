@@ -2,8 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 import config from '../config';
-import { User } from '../resources/user/user.model';
-import { IUserDoc } from '../resources/user/user.type';
+import { IUserDoc, User } from '../resources/user';
 import { commonErrors } from './errorManagement';
 
 const newToken = (user: IUserDoc) => {

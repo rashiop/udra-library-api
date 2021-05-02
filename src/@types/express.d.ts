@@ -1,4 +1,4 @@
-import { IUserDoc } from '../resources/user/user.type';
+import { IUserDoc } from '../resources/user';
 
 declare module Express {
   export interface Request {

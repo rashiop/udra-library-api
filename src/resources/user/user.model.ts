@@ -86,4 +86,4 @@ UserSchema.method({
 
 const User = model<IUserDoc, IUserModel>('User', UserSchema);
 
-export { User };
+export default User;
