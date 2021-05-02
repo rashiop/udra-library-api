@@ -3,6 +3,7 @@
     "security"
   ],
   "extends": [
+    "airbnb-base",
     "plugin:security/recommended"
   ]
 }
