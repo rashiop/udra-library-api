@@ -41,7 +41,7 @@ export const getMany = (model: Model<any>) => async(req: Request, res: Response,
 };
 
 export const createOne = (model: Model<any>) => async(req: Request, res: Response) => {
-  const createdBy = 'req?.user?._id';
+  const createdBy = req['user']._id;
   try {
     const data = await model.create({ ...req.body, createdBy });
     return res.status(201).json({ data });
@@ -55,8 +55,7 @@ export const updateOne = (model: Model<any>) => async(req: Request, res: Respons
     const updatedDoc = await model
       .findOneAndUpdate(
         {
-          // createdBy: '',
-          // createdBy: (req.user || {})._id,
+          createdBy: req['user']._id,
           _id: req.params?.id
         },
         req.body,
@@ -80,8 +79,7 @@ export const updateOne = (model: Model<any>) => async(req: Request, res: Respons
 export const removeOne = (model: Model<any>) => async(req: Request, res: Response) => {
   try {
     const removed = await model.findOneAndRemove({
-      // createdBy: '',
-      // createdBy: (req.user || {})._id,
+      // createdBy: req['user']._id,
       _id: (req.params || {}).id
     });
 

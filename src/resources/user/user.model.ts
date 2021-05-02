@@ -2,13 +2,12 @@ import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
 
 import config from '../../config';
-import { commonErrors } from '../../lib/errorManagement';
-import { Gender, IUser, IUserBase, IUserBaseDoc, Role } from './user.type';
+import { Gender, IUser, IUserDoc, IUserModel, Role } from './user.type';
 
 
-const schemaFields: Record<keyof IUserBase, any> = {
+const schemaFields: Record<keyof IUser, any> = {
   email: {
-    required: true,
+    required: [true],
     trim: true,
     type: String,
     unique: true,
@@ -31,17 +30,14 @@ const schemaFields: Record<keyof IUserBase, any> = {
   settings: {
     theme: {
       default: 'dark',
-      required: true,
       type: String,
     },
     notification: {
       default: true,
-      required: true,
       type: Boolean,
     },
     compactMode: {
       default: false,
-      required: true,
       type: Boolean,
     }
   },
@@ -57,12 +53,15 @@ const schemaFields: Record<keyof IUserBase, any> = {
   }
 }
 
-const UserSchema: Schema<IUserBaseDoc> = new Schema(schemaFields, { timestamps: true })
+const UserSchema: Schema<IUserDoc> = new Schema(schemaFields, { timestamps: true })
 
-UserSchema.pre<IUser>('save', async function hashPassword() {
+// https://security.stackexchange.com/questions/133239/what-is-the-specific-reason-to-prefer-bcrypt-or-pbkdf2-over-sha256-crypt-in-pass/133251#133251
+
+UserSchema.pre<IUserDoc>('save', async function hashPassword() {
   if (this.isModified('password')) {
     try {
-      const hashed = await bcrypt.hash(this.password, config.secrets.salt_round);
+      const salt = await bcrypt.genSalt(+config.secrets.salt_round);
+      const hashed = await bcrypt.hash(this.password, salt);
       this.password = hashed;
     } catch(ex) {
       return ex;
@@ -70,30 +69,21 @@ UserSchema.pre<IUser>('save', async function hashPassword() {
   }
 })
 
-UserSchema.virtual("fullname").get(function getFullname(this: IUserBaseDoc) {
+UserSchema.virtual("fullname").get(function getFullname(this: IUserDoc) {
   return this.firstname + ' ' + this.lastname
 })
 
 UserSchema.method({
-  getGender: function(this: IUserBaseDoc) {
+  getGender: function(this: IUserDoc) {
     return this.gender > 0 ? "Male" : "Female"
   },
-  checkPassword: async function(this: IUserBaseDoc, password: string) {
+  checkPassword: async function(this: IUserDoc, password: string) {
     const passwordHash = this.password;
-    try {
-      const valid = await bcrypt.compare(password, passwordHash);
-      if (!valid) {
-        throw commonErrors.UnauthorizedError({
-          message: 'Invalid username/password'
-        })
-      }
-    } catch(ex) {
-      return ex;
-    }
+    return await bcrypt.compare(password, passwordHash);
   }
 })
 
 
-const User = model<IUser>('User', UserSchema);
+const User = model<IUserDoc, IUserModel>('User', UserSchema);
 
 export { User };

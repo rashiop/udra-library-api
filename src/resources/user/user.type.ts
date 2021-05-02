@@ -1,4 +1,6 @@
-import { Document } from 'mongoose';
+import { Document, Model } from 'mongoose';
+
+// https://hackernoon.com/how-to-link-mongoose-and-typescript-for-a-single-source-of-truth-94o3uqc
 
 enum Role {
   USER = 'user',
@@ -12,7 +14,7 @@ enum Gender {
 }
 
 // buat pastiin key & schema field sama
-interface IUserBase {
+interface IUser {
   email: string;
   password: string;
   firstname: string;
@@ -27,18 +29,22 @@ interface IUserBase {
   isActive: boolean;
 }
 
+// This is where @types/mongoose shines. Simply create a new interface called IUserDoc that is a extension between our IUser and mongoose's Document types:
 // biar ts ngerti mongoose type docs
-interface IUserBaseDoc extends IUserBase, Document {
+interface IUserDoc extends IUser, Document {
   fullname: string;
   getGender(): string;
+  checkPassword(password: string): Promise<IUserDoc>;
 }
 
-type IUser = IUserBaseDoc
+// static method
+interface IUserModel extends Model<IUserDoc> {
+}
 
 export {
   Role,
   Gender,
-  IUserBase,
-  IUserBaseDoc,
-  IUser
+  IUser,
+  IUserDoc,
+  IUserModel,
 }

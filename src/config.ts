@@ -9,8 +9,8 @@ export default {
     port: process.env.PORT,
     dbUri: `mongodb+srv://udra:${process.env.DB_PASSWORD}@cluster0.rccyw.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
     secrets: {
-        jwt: process.env.JWT_SECRET,
+        jwt: process.env.JWT_SECRET || 'secret',
         jwt_exp: '100d',
-        salt_round: process.env.SALT_ROUND || 8
+        salt_round: process.env.SALT_ROUND || 10
     }
 }
