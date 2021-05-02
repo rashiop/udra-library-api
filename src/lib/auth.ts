@@ -32,9 +32,9 @@ export const signup = async(req: Request, res: Response) => {
 
     const user = await User.create(req.body);
     const token = newToken(user);
-    res.status(201).json({ token });
+    return res.status(201).json({ token });
   } catch(ex) {
-    res.status(ex.httpCode || 400).send({
+    return res.status(ex.httpCode || 400).send({
       error: ex.message
     })
   }
@@ -61,10 +61,10 @@ export const signin = async(req: Request, res: Response) => {
       })
     }
 
-    const token = newToken(match);
-    res.status(200).json({ token });
+    const token = newToken(user);
+    return res.status(200).json({ token });
   } catch(ex) {
-    res.status(ex.httpCode || 401).send({
+    return res.status(ex.httpCode || 401).send({
       message: ex.message
     });
   }
@@ -87,12 +87,13 @@ export const protect = async(req: Request, res: Response, next: NextFunction) =>
       .select('-password')
       .lean()
       .exec();
+    
     if (user) {
       req['user'] = user;
-      next();
+      return next();
     }
   } catch(ex) {
-    res.status(ex.httpCode).send({
+    return res.status(ex.httpCode).send({
       error: ex.message
     })
   }
