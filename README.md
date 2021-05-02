@@ -10,9 +10,9 @@ Library API to facilitate book borrowing system.
 There are 3 types of logged-in users: SUPERADMIN, ADMIN, MEMBER.
 | _id (ObjectId, Autogenerate)  | email            | password (hashed) | firstname | lastname | gender (0=male, 1=female) | settings | role          | is_active |
 | :---  | :---------------:| :------:  | :------:  | :------: | :----: | :------: | :--:          | :------: |
-| 1  | admin@lib.ac     | admin     | Admin     | LastA | 0    | { theme, notification, compactMode } | ADMIN         | true     |
-| 2  | super@lib.ac     | super     | Super     | LastS | 1  | { theme, notification, compactMode } | SUPERADMIN    | true     |
-| 3  | member@gmail.com | member    | Member    | LastM | 0    | { theme, notification, compactMode } | MEMBER        | true     |
+| 1  | admin@lib.ac     | admin     | Admin     | LastA | 0    | { theme, notification, compactMode } | admin         | true     |
+| 2  | super@lib.ac     | admin     | Super     | LastS | 1  | { theme, notification, compactMode } | super_admin    | true     |
+| 3  | member@gmail.com | member    | Member    | LastM | 0    | { theme, notification, compactMode } | user        | true     |
 
 ##### 2. Genre
 | _id | name          | created_by| created_at | updated_by   | updated_at |
