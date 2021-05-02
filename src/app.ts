@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import { protect, signin, signup } from './lib/auth';
 import errorHandler from './lib/errorManagement/handler';
 import morganMiddleware from './lib/logger/morgan';
+import { authorRouter } from './resources/author';
 import { genreRouter } from './resources/genre';
 import { userRouter } from './resources/user';
 
@@ -22,6 +23,7 @@ app.use('/signin', signin)
 app.use('/signup', signup)
 
 app.use('/api', protect)
+app.use('/api/v1/author', authorRouter)
 app.use('/api/v1/genre', genreRouter)
 app.use('/api/v1/user', userRouter)
 
