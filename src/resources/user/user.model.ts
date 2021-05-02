@@ -36,7 +36,7 @@ const schemaFields: Record<keyof IUser, any> = {
       default: true,
       type: Boolean,
     },
-    compactMode: {
+    compact_mode: {
       default: false,
       type: Boolean,
     }
@@ -47,7 +47,7 @@ const schemaFields: Record<keyof IUser, any> = {
     required: true,
     type: String,
   },
-  isActive: {
+  is_active: {
     default: true,
     type: Boolean,
   }

@@ -23,10 +23,10 @@ interface IUser {
   settings: {
     theme: string;
     notification: boolean;
-    compactMode: boolean;
+    compact_mode: boolean;
   };
   role: Role;
-  isActive: boolean;
+  is_active: boolean;
 }
 
 // This is where @types/mongoose shines. Simply create a new interface called IUserDoc that is a extension between our IUser and mongoose's Document types:
