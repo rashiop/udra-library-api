@@ -41,12 +41,12 @@ export const getMany = (model: Model<any>) => async(req: Request, res: Response,
 };
 
 export const createOne = (model: Model<any>) => async(req: Request, res: Response) => {
-  const createdBy = req['user']._id;
+  const creator = req['user']._id;
   try {
-    const data = await model.create({ ...req.body, createdBy });
+    const data = await model.create({ ...req.body, created_by: creator, updated_by: creator });
     return res.status(201).json({ data });
   } catch (ex) {
-    return res.status(400).json({ message: ex.name });
+    return res.status(ex.httpCode || 400).json({ message: ex.message }).end();
   }
 };
 
@@ -59,7 +59,7 @@ export const updateOne = (model: Model<any>) => async(req: Request, res: Respons
           _id: req.params?.id
         },
         req.body,
-        { new: true }
+        { new: true, runValidators: true }
       )
       .lean()
       .exec();

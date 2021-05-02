@@ -1,25 +1,29 @@
-import { Document, model, Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
-interface IGenre {
-  name: string
-}
+import { IGenre, IGenreDoc, IGenreModel } from './genre.type';
 
-interface IGenreDoc extends IGenre, Document {}
-
-const genreSchemaField: Record<keyof IGenre, any> = {
+const schemaFields: Record<keyof IGenre, any> = {
   name: {
     type: String,
     required: true,
     trim: true,
     maxlength: 100,
     minLength: 4
+  },
+  updated_by: { type: Schema.Types.ObjectId, ref: 'User' },
+  created_by: { type: Schema.Types.ObjectId, ref: 'User' },
+  is_active: {
+    type: Boolean,
+    default: true
   }
 }
 
-const genreSchema = new Schema(genreSchemaField,
+const genreSchema: Schema<IGenreDoc> = new Schema(schemaFields,
   { timestamps: true }
 )
 
 genreSchema.index({ name: 1 }, { unique: true })
 
-export const Genre = model<IGenreDoc>('Genre', genreSchema)
+const Genre = model<IGenreDoc, IGenreModel>('Genre', genreSchema)
+
+export default Genre;
