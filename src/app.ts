@@ -7,7 +7,9 @@ import { protect, signin, signup } from './lib/auth';
 import errorHandler from './lib/errorManagement/handler';
 import morganMiddleware from './lib/logger/morgan';
 import { authorRouter } from './resources/author';
+import { bookRouter } from './resources/book';
 import { genreRouter } from './resources/genre';
+import { publisherRouter } from './resources/publisher';
 import { userRouter } from './resources/user';
 
 export const app = express()
@@ -25,6 +27,8 @@ app.use('/api', protect)
 app.use('/api/v1/author', authorRouter)
 app.use('/api/v1/genre', genreRouter)
 app.use('/api/v1/user', userRouter)
+app.use('/api/v1/publisher', publisherRouter)
+app.use('/api/v1/book', bookRouter)
 
 
 app.use((err, _req, res, next) => {

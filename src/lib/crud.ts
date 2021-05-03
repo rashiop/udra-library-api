@@ -27,14 +27,8 @@ export const getMany = (model: Model<any>) => async(req: Request, res: Response,
       .find(req.query || {})
       .lean()
       .exec();
-
-    if (data == null || data.length == 0) {
-      throw commonErrors.ResourceNotFoundError({
-        message: 'Data did not exist',
-      })
-    }
     
-    return res.status(200).json({ data });
+    return res.status(200).json({ data: data || [] });
   } catch (ex) {
     return next(ex);
   }
@@ -53,11 +47,8 @@ export const createOne = (model: Model<any>) => async(req: Request, res: Respons
 export const updateOne = (model: Model<any>) => async(req: Request, res: Response) => {
   try {
     const updatedDoc = await model
-      .findOneAndUpdate(
-        {
-          createdBy: req['user']._id,
-          _id: req.params?.id
-        },
+      .findByIdAndUpdate(
+        req.params?.id,
         req.body,
         { new: true, runValidators: true }
       )
