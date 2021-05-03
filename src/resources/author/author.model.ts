@@ -23,8 +23,6 @@ const authorSchema: Schema<IAuthorDoc> = new Schema(schemaFields,
   { timestamps: true }
 )
 
-authorSchema.index({ name: 1 }, { unique: true })
-
 const Author = model<IAuthorDoc, IAuthorModel>('Author', authorSchema)
 
 export default Author;
