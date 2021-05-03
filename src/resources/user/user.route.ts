@@ -1,13 +1,18 @@
 import { Router } from 'express';
 
-import controller from './user.controller';
+import controller, { me } from './user.controller';
 
 const router = Router();
 
+
 router
-  .route('/')
-  .get(controller.getMany)
-  .post(controller.createOne)
+.route('/')
+.get(controller.getMany)
+.post(controller.createOne)
+
+router
+  .route('/me')
+  .get(me);
 
 router
   .route('/:id')

@@ -5,7 +5,8 @@ import { Document, Model } from 'mongoose';
 enum Role {
   USER = 'user',
   ADMIN = 'admin',
-  SUPER_ADMIN = 'super_admin'
+  SUPER_ADMIN = 'super_admin',
+  LOGGED_USER = 'logged_user'
 }
 
 enum Gender {
@@ -38,8 +39,7 @@ interface IUserDoc extends IUser, Document {
 }
 
 // static method
-interface IUserModel extends Model<IUserDoc> {
-}
+interface IUserModel extends Model<IUserDoc> {}
 
 export {
   Role,

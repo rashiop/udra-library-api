@@ -1,14 +1,16 @@
 import { model, Schema } from 'mongoose';
 
+import { initError } from './genre.constant';
 import { IGenre, IGenreDoc, IGenreModel } from './genre.type';
 
+const error = initError()
 const schemaFields: Record<keyof IGenre, any> = {
   name: {
     type: String,
-    required: true,
+    required: [true, error.nameRequired],
     trim: true,
-    maxlength: 100,
-    minLength: 4
+    maxLength: [100, error.nameMaxLength],
+    minLength: [4, error.nameMinLength]
   },
   updated_by: { type: Schema.Types.ObjectId, ref: 'User' },
   created_by: { type: Schema.Types.ObjectId, ref: 'User' },

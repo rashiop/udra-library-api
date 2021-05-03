@@ -1,14 +1,15 @@
 import { model, Schema } from 'mongoose';
 
+import { error } from './publisher.constant';
 import { IPublisher, IPublisherDoc, IPublisherModel } from './publisher.type';
 
 const schemaFields: Record<keyof IPublisher, any> = {
   name: {
     type: String,
-    required: true,
+    required: [true, error.nameRequired],
     trim: true,
-    maxlength: 255,
-    minLength: 4
+    maxLength: [255, error.nameMaxLength],
+    minLength: [4, error.nameMinLength]
   },
   updated_by: { type: Schema.Types.ObjectId, ref: 'User' },
   created_by: { type: Schema.Types.ObjectId, ref: 'User' },

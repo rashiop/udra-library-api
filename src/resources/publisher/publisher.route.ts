@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { checkPermission } from '../../lib/auth';
+import { checkPermissionRole } from '../../lib/auth';
 import { Role } from '../user';
 import publisherController from './publisher.controller';
 
@@ -10,7 +10,7 @@ router
   .route('/')
   .get(publisherController.getMany)
   .post(
-    checkPermission(Role.ADMIN, Role.SUPER_ADMIN),
+    checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     publisherController.createOne
   )
 
@@ -18,11 +18,11 @@ router
   .route('/:id')
   .get(publisherController.getOneById)
   .patch(
-    checkPermission(Role.ADMIN, Role.SUPER_ADMIN),
+    checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     publisherController.updateOne
   )
   .delete(
-    checkPermission(Role.ADMIN, Role.SUPER_ADMIN),
+    checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     publisherController.removeOne
   )
 

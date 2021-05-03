@@ -99,10 +99,22 @@ export const protect = async(req: Request, res: Response, next: NextFunction) =>
   }
 }
 
-export const checkPermission = (...permittedRoles) => {
+export const checkPermissionRole = (...permittedRoles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const user = req['user']
     if (user && permittedRoles.includes(user.role)) {
+      return next()
+    }
+    return res.status(ErrorStatus.OperationNotAllowed).json({ message: 'Forbidden' })
+  }
+}
+
+export const checkPermissionLogedInUser = (...permittedRoles: string[]) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const user = req['user']
+    const isPermittedRoles = user && (permittedRoles.includes(user.role))
+    const logedInUser = user._id === req.params.id
+    if (isPermittedRoles || logedInUser) {
       return next()
     }
     return res.status(ErrorStatus.OperationNotAllowed).json({ message: 'Forbidden' })
