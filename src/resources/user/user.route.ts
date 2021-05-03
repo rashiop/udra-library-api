@@ -1,13 +1,13 @@
 import { Router } from 'express';
 
-import controller, { me } from './user.controller';
+import controller, { getManyUser, getUser, me } from './user.controller';
 
 const router = Router();
 
 
 router
 .route('/')
-.get(controller.getMany)
+.get(getManyUser)
 .post(controller.createOne)
 
 router
@@ -16,7 +16,7 @@ router
 
 router
   .route('/:id')
-  .get(controller.getOneById)
+  .get(getUser)
   .patch(controller.updateOne)
   .delete(controller.removeOne)
 
