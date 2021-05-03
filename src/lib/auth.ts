@@ -100,10 +100,8 @@ export const protect = async(req: Request, res: Response, next: NextFunction) =>
 }
 
 export const checkPermission = (...permittedRoles) => {
-  console.log('permittedRoles',permittedRoles);
   return (req: Request, res: Response, next: NextFunction) => {
     const user = req['user']
-    console.log(permittedRoles.includes(user.role), user.role)
     if (user && permittedRoles.includes(user.role)) {
       return next()
     }
