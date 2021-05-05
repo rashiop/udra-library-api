@@ -1,8 +1,11 @@
 import { Document, Model, Types } from 'mongoose';
 
 interface IAuthor {
-  name: string;
+  first_name: string;
+  last_name: string;
   is_active: boolean;
+  date_of_birth: Date;
+  date_of_death: Date;
   created_by: Types.ObjectId;
   updated_by: Types.ObjectId;
 }

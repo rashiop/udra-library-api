@@ -1,27 +1,53 @@
+import moment from 'moment';
 import { model, Schema } from 'mongoose';
 
-import { error } from './author.constant';
+import { authorUrl, error } from './author.constant';
 import { IAuthor, IAuthorDoc, IAuthorModel } from './author.type';
 
 const schemaFields: Record<keyof IAuthor, any> = {
-  name: {
+  first_name: {
     type: String,
-    required: [true, error.nameRequired],
+    required: [true, error.firstNameRequired],
     trim: true,
-    maxLength: [1000, error.nameMaxLength],
-    minLength: [4, error.nameMinLength]
+    maxLength: [1000, error.firstNameMaxLength]
+  },
+  last_name: {
+    type: String,
+    required: [true, error.lastNameRequired],
+    trim: true,
+    maxLength: [1000, error.lastNameMaxLength],
   },
   updated_by: { type: Schema.Types.ObjectId, ref: 'User' },
   created_by: { type: Schema.Types.ObjectId, ref: 'User' },
   is_active: {
     type: Boolean,
     default: true
-  }
+  },
+  date_of_birth: { type: Date },
+  date_of_death: { type: Date },
 }
 
 const authorSchema: Schema<IAuthorDoc> = new Schema(schemaFields,
   { timestamps: true }
 )
+
+authorSchema
+.virtual('full_name')
+.get(function fullname(this: IAuthorDoc) {
+  return this.first_name + ' ' + this.last_name
+})
+
+authorSchema
+.virtual('lifespan')
+.get(function lifespan(this: IAuthorDoc) {
+  return moment(this.date_of_death).diff(this.date_of_birth, 'years')
+})
+
+authorSchema
+.virtual('url')
+.get(function url(this: IAuthorDoc) {
+  return `${authorUrl}/${this._id}`
+})
 
 const Author = model<IAuthorDoc, IAuthorModel>('Author', authorSchema)
 
