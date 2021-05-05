@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { model, Schema } from 'mongoose';
+import mongooseLeanVirtuals from 'mongoose-lean-virtuals';
 
 import { authorUrl, error } from './author.constant';
 import { IAuthor, IAuthorDoc, IAuthorModel } from './author.type';
@@ -48,6 +49,8 @@ authorSchema
 .get(function url(this: IAuthorDoc) {
   return `${authorUrl}/${this._id}`
 })
+
+authorSchema.plugin(mongooseLeanVirtuals);
 
 const Author = model<IAuthorDoc, IAuthorModel>('Author', authorSchema)
 
