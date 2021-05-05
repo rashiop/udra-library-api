@@ -4,15 +4,18 @@ interface IBook {
   title: string;
   description: string;
   is_active: boolean;
-  author: Types.ObjectId[];
-  genre: Types.ObjectId[];
+  authors: Types.ObjectId[];
+  genres: Types.ObjectId[];
   publisher: Types.ObjectId;
   created_by: Types.ObjectId;
   updated_by: Types.ObjectId;
-  total?: number;
 }
 
-interface IBookDoc extends IBook, Document {}
+interface IBookDoc extends IBook, Document {
+  url: string;
+  total: number;
+  stock: number;
+}
 
 interface IBookModel extends Model<IBookDoc> {}
 

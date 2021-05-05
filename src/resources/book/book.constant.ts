@@ -13,5 +13,6 @@ const errorLanguage = {
     transactionNotFound: 'Transaction ID not found',
   }
 }
-
 export const error = errorLanguage[config.language]
+
+export const bookUrl = '/book';

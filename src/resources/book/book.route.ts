@@ -2,13 +2,13 @@ import { Router } from 'express';
 
 import { checkPermissionRole } from '../../lib/auth';
 import { Role } from '../user';
-import bookController from './book.controller';
+import bookController, { getMany, getOneById } from './book.controller';
 
 const router = Router();
 
 router
   .route('/')
-  .get(bookController.getMany)
+  .get(getMany)
   .post(
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     bookController.createOne
@@ -16,7 +16,7 @@ router
 
 router
   .route('/:id')
-  .get(bookController.getOneById)
+  .get(getOneById)
   .patch(
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     bookController.updateOne
