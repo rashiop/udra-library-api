@@ -37,7 +37,7 @@ There are 3 types of logged-in users: SUPERADMIN, ADMIN, MEMBER.
 ##### 5. Book
 
 | _id | Title          | created_by| created_at | updated_by   | updated_at | authors    | genres     | pubsliher | year | edition | 
-| ----| ---------------|:---------:| ----------:|:------------:| ----------:| ---------:| ----------:| ---------:| ----------:| ----------:| ----------:|-------:|
+| ----| ---------------|:---------:| ----------:|:------------:| ----------:| ----------:| ----------:| ---------:| ----------:| ----------:|
 | 1   | Clean Code     | _userid   | 2020-01-31 | _userid      | 2020-01-31 | _authorid | _genreid[] | _publisherid | 2020 | 10 |
 | 2   | Penerbit Pureo | _userid   | 2020-01-31 | _userid      | 2020-01-31 | _authorid | _genreid[] | _publisherid | 2020 | 10 |
 ##### 6. Book Instance
