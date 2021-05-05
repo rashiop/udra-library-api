@@ -1,25 +1,38 @@
 import { Document, Model, Types } from 'mongoose';
 
+enum ActiveStatus {
+  A = 'active',
+  D = 'deleted'
+}
 interface IBook {
   title: string;
   description: string;
-  is_active: boolean;
+  active_status: ActiveStatus;
   authors: Types.ObjectId[];
   genres: Types.ObjectId[];
   publisher: Types.ObjectId;
   created_by: Types.ObjectId;
   updated_by: Types.ObjectId;
-}
-
-interface IBookDoc extends IBook, Document {
-  url: string;
   total: number;
   stock: number;
 }
 
-interface IBookModel extends Model<IBookDoc> {}
+interface IBookDoc extends IBook, Document {
+  url: string;
+  returnBook(): void;
+  borrowBook(): void;
+  addTotal(): void;
+  minTotal(): void;
+}
+
+interface IBookModel extends Model<IBookDoc> {
+  getOneById(bookId: unknown): IBookDoc | null;
+  getMany(): IBookDoc[] | null;
+
+}
 
 export { 
+  ActiveStatus,
   IBook,
   IBookDoc,
   IBookModel

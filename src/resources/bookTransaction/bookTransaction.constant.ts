@@ -4,7 +4,7 @@ const errorLanguage = {
   EN: {
     userRequired: 'User must be filled',
     bookRequired: 'Book must be choosen',
-    transactionNotFound: 'Transaction ID not found'
+    transactionNotFound: 'transaction ID not found, you might have returned it before'
   }
 }
 

@@ -8,6 +8,8 @@ import errorHandler from './lib/errorManagement/handler';
 import morganMiddleware from './lib/logger/morgan';
 import { authorRouter } from './resources/author';
 import { bookRouter } from './resources/book';
+import { bookTransactionRouter } from './resources/bookTransaction';
+import { fineRouter } from './resources/fine';
 import { genreRouter } from './resources/genre';
 import { publisherRouter } from './resources/publisher';
 import { userRouter } from './resources/user';
@@ -25,10 +27,12 @@ app.use('/signup', signup)
 
 app.use('/api', protect)
 app.use('/api/v1/author', authorRouter)
-app.use('/api/v1/genre', genreRouter)
-app.use('/api/v1/user', userRouter)
-app.use('/api/v1/publisher', publisherRouter)
 app.use('/api/v1/book', bookRouter)
+app.use('/api/v1/fine', fineRouter)
+app.use('/api/v1/genre', genreRouter)
+app.use('/api/v1/publisher', publisherRouter)
+app.use('/api/v1/user', userRouter)
+app.use('/api/v1/book-transaction', bookTransactionRouter)
 
 
 app.use((err, _req, res, next) => {

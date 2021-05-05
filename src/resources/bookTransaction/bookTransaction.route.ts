@@ -15,8 +15,8 @@ router
   .post(bookTransactionController.createOne)
 
 router
-  .route('/returnBook/:id')
-  .post(
+  .route('/return/:id')
+  .patch(
     checkPermissionLogedInUser(Role.ADMIN, Role.SUPER_ADMIN),
     returnBook
   )
