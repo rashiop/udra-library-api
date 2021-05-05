@@ -3,29 +3,29 @@ import { Model } from 'mongoose';
 
 import { commonErrors } from './errorManagement';
 
-export const getOne = (model: Model<any>) => async(req: Request, res: Response) => {
+export const getOne = (model: Model<any>, options={}) => async(req: Request, res: Response) => {
   try {
-    const data = await model.findOne(req.params).lean().exec();
+    const data = await model.findOne(req.params).lean(options).exec();
     return res.status(200).json({ data });
   } catch(ex) {
     return res.status(400).json({ error: ex.name });
   }
 }
 
-export const getOneById = (model: Model<any>) => async(req: Request, res: Response) => {
+export const getOneById = (model: Model<any>, options={}) => async(req: Request, res: Response) => {
   try {
-    const data = await model.findById(req.params?.id).lean().exec();
+    const data = await model.findById(req.params?.id).lean(options).exec();
     return res.status(200).json({ data });
   } catch(ex) {
     return res.status(400).json({ error: ex.name });
   }
 }
 
-export const getMany = (model: Model<any>) => async(req: Request, res: Response, next: NextFunction) => {
+export const getMany = (model: Model<any>, options={}) => async(req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await model
       .find(req.query || {})
-      .lean()
+      .lean(options)
       .exec();
     
     return res.status(200).json({ data: data || [] });
@@ -44,7 +44,7 @@ export const createOne = (model: Model<any>) => async(req: Request, res: Respons
   }
 };
 
-export const updateOne = (model: Model<any>) => async(req: Request, res: Response) => {
+export const updateOne = (model: Model<any>, options={}) => async(req: Request, res: Response) => {
   try {
     const updatedDoc = await model
       .findByIdAndUpdate(
@@ -52,7 +52,7 @@ export const updateOne = (model: Model<any>) => async(req: Request, res: Respons
         req.body,
         { new: true, runValidators: true }
       )
-      .lean()
+      .lean(options)
       .exec();
 
     if (!updatedDoc) {
@@ -84,11 +84,11 @@ export const removeOne = (model: Model<any>) => async(req: Request, res: Respons
   }
 };
 
-export const crudControllers = (model: Model<any>) => ({
+export const crudControllers = (model: Model<any>, options={}) => ({
   removeOne: removeOne(model),
-  updateOne: updateOne(model),
-  getMany: getMany(model),
-  getOne: getOne(model),
-  getOneById: getOneById(model),
+  updateOne: updateOne(model, options),
+  getMany: getMany(model, options),
+  getOne: getOne(model, options),
+  getOneById: getOneById(model, options),
   createOne: createOne(model)
 })
