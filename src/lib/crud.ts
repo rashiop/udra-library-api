@@ -8,7 +8,7 @@ export const getOne = (model: Model<any>) => async(req: Request, res: Response) 
     const data = await model.findOne(req.params).lean().exec();
     return res.status(200).json({ data });
   } catch(ex) {
-    return res.status(400).json({ message: ex.name });
+    return res.status(400).json({ error: ex.name });
   }
 }
 
@@ -17,7 +17,7 @@ export const getOneById = (model: Model<any>) => async(req: Request, res: Respon
     const data = await model.findById(req.params?.id).lean().exec();
     return res.status(200).json({ data });
   } catch(ex) {
-    return res.status(400).json({ message: ex.name });
+    return res.status(400).json({ error: ex.name });
   }
 }
 
@@ -63,7 +63,7 @@ export const updateOne = (model: Model<any>) => async(req: Request, res: Respons
 
     return res.status(200).json({ data: updatedDoc });
   } catch (ex) {
-    return res.status(400).json({ message: ex.name });
+    return res.status(400).json({ error: ex.name });
   }
 };
 
@@ -80,7 +80,7 @@ export const removeOne = (model: Model<any>) => async(req: Request, res: Respons
 
     return res.status(200).json({ data: removed });
   } catch (ex) {
-    return res.status(400).json({ message: ex.name });
+    return res.status(400).json({ error: ex.name });
   }
 };
 
