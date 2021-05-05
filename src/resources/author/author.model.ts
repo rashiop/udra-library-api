@@ -2,6 +2,7 @@ import moment from 'moment';
 import { model, Schema } from 'mongoose';
 import mongooseLeanVirtuals from 'mongoose-lean-virtuals';
 
+import { ActiveStatus } from '../../helper/activeStatus';
 import { authorUrl, error } from './author.constant';
 import { IAuthor, IAuthorDoc, IAuthorModel } from './author.type';
 
@@ -20,9 +21,10 @@ const schemaFields: Record<keyof IAuthor, any> = {
   },
   updated_by: { type: Schema.Types.ObjectId, ref: 'User' },
   created_by: { type: Schema.Types.ObjectId, ref: 'User' },
-  is_active: {
-    type: Boolean,
-    default: true
+  active_status: {
+    type: String,
+    enum: ActiveStatus,
+    default: ActiveStatus.A
   },
   date_of_birth: { type: Date },
   date_of_death: { type: Date },

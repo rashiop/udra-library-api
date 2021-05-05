@@ -1,8 +1,10 @@
 import { Document, Model, Types } from 'mongoose';
 
+import { ActiveStatus } from '../../helper/activeStatus';
+
 interface IPublisher {
   name: string;
-  is_active: boolean;
+  active_status: ActiveStatus;
   created_by: Types.ObjectId;
   updated_by: Types.ObjectId;
 }

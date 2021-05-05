@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 
+import { ActiveStatus } from '../../helper/activeStatus';
 import { error } from './publisher.constant';
 import { IPublisher, IPublisherDoc, IPublisherModel } from './publisher.type';
 
@@ -13,10 +14,11 @@ const schemaFields: Record<keyof IPublisher, any> = {
   },
   updated_by: { type: Schema.Types.ObjectId, ref: 'User' },
   created_by: { type: Schema.Types.ObjectId, ref: 'User' },
-  is_active: {
-    type: Boolean,
-    default: true
-  }
+  active_status: {
+    type: String,
+    enum: ActiveStatus,
+    default: ActiveStatus.A
+  },
 }
 
 const publisherSchema: Schema<IPublisherDoc> = new Schema(schemaFields,

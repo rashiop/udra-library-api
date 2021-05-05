@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 
+import { ActiveStatus } from '../../helper/activeStatus';
 import { initError } from './genre.constant';
 import { IGenre, IGenreDoc, IGenreModel } from './genre.type';
 
@@ -14,10 +15,11 @@ const schemaFields: Record<keyof IGenre, any> = {
   },
   updated_by: { type: Schema.Types.ObjectId, ref: 'User' },
   created_by: { type: Schema.Types.ObjectId, ref: 'User' },
-  is_active: {
-    type: Boolean,
-    default: true
-  }
+  active_status: {
+    type: String,
+    enum: ActiveStatus,
+    default: ActiveStatus.A
+  },
 }
 
 const genreSchema: Schema<IGenreDoc> = new Schema(schemaFields,

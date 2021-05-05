@@ -1,5 +1,7 @@
 import { Document, Model } from 'mongoose';
 
+import { ActiveStatus } from '../../helper/activeStatus';
+
 // https://hackernoon.com/how-to-link-mongoose-and-typescript-for-a-single-source-of-truth-94o3uqc
 
 enum Role {
@@ -27,7 +29,7 @@ interface IUser {
     compact_mode: boolean;
   };
   role: Role;
-  is_active: boolean;
+  active_status: ActiveStatus;
 }
 
 // This is where @types/mongoose shines. Simply create a new interface called IUserDoc that is a extension between our IUser and mongoose's Document types:

@@ -1,9 +1,11 @@
 import { Document, Model, Types } from 'mongoose';
 
+import { ActiveStatus } from '../../helper/activeStatus';
+
 interface IAuthor {
   first_name: string;
   last_name: string;
-  is_active: boolean;
+  active_status: ActiveStatus;
   date_of_birth: Date;
   date_of_death: Date;
   created_by: Types.ObjectId;

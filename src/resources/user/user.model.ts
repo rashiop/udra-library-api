@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
 
 import config from '../../config';
+import { ActiveStatus } from '../../helper/activeStatus';
 import { Gender, IUser, IUserDoc, IUserModel, Role } from './user.type';
 
 
@@ -47,10 +48,11 @@ const schemaFields: Record<keyof IUser, any> = {
     required: true,
     type: String,
   },
-  is_active: {
-    default: true,
-    type: Boolean,
-  }
+  active_status: {
+    type: String,
+    enum: ActiveStatus,
+    default: ActiveStatus.A
+  },
 }
 
 const UserSchema: Schema<IUserDoc> = new Schema(schemaFields, { timestamps: true })
