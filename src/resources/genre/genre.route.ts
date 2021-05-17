@@ -17,7 +17,7 @@ router
 router
   .route('/:id')
   .get(genreController.getOneById)
-  .patch(
+  .put(
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     genreController.updateOne
   )

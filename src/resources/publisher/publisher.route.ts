@@ -17,7 +17,7 @@ router
 router
   .route('/:id')
   .get(publisherController.getOneById)
-  .patch(
+  .put(
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     publisherController.updateOne
   )
