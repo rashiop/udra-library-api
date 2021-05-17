@@ -1,0 +1,1 @@
+export { crudControllers } from './crud.controller'
