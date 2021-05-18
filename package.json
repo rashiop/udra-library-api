@@ -1,12 +1,15 @@
 {
   "name": "udra-manga-api",
   "version": "1.0.0",
-  "main": "dist/server.js",
+  "main": "dist/api/index.js",
   "repository": "git@github.com:rashiop/udra-manga-api.git",
   "author": "rashiop <red.alpacca@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "copy-files:vercel": "cp -r ./vercel/* dist/",
+    "build": "tsc && sleep 15",
+    "postbuild": "npm run copy-files:vercel",
+    "start": "NODE_ENV=production nodemon api/index.js ",
     "dev": "NODE_ENV=development ts-node-dev src/server.ts",
     "stg": "NODE_ENV=staging ts-node-dev src/server.ts",
     "prod": "NODE_ENV=production ts-node-dev src/server.ts",
@@ -27,6 +30,8 @@
     "mongoose": "^5.12.5",
     "mongoose-lean-virtuals": "^0.8.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {
@@ -46,7 +51,6 @@
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-security": "^1.4.0",
-    "nodemon": "^2.0.7",
     "source-map-support": "^0.5.19",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.6",
