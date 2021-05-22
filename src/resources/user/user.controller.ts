@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { crudControllers } from '../../lib/crud';
+import { crudControllers } from '../../helper/crud';
 import User from './user.model';
 
 export const me = (req: Request, res: Response) => {

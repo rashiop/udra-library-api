@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { ActiveStatus } from '../../helper/activeStatus';
-import { crudControllers } from '../../lib/crud';
+import { crudControllers } from '../../helper/crud';
 import { commonErrors } from '../../lib/errorManagement';
 import { error } from './fine.constant';
 import Fine from './fine.model';

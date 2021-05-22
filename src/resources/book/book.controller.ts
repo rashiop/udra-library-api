@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { crudControllers } from '../../lib/crud';
+import { crudControllers } from '../../helper/crud';
 import Book from './book.model';
 
 export const getOneById = async(req: Request, res: Response) => {

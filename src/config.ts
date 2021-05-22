@@ -2,7 +2,6 @@ import customEnv from 'custom-env';
 
 const inDeployment = Boolean(process.env.VERCEL_ENV)
 if (customEnv && !inDeployment) {
-  console.log(process.env)
   customEnv.env(true)
 }
 
