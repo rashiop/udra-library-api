@@ -199,10 +199,28 @@ yarn dev
 - [ ] Socket
 - [ ] Message broker
 - [ ] Testing
+- [ ] Document API using swagger
 
 
 ### WHY?
-1. Validate with both express-validator and mongoose?
+1. Folder Structure
+- Structure by components?
+```
+Ensure each unit keep small and simple
+```
+- separate layer
+For clean separation and ease mocking
+  + route
+  + controller
+  + model
+  + constant 
+  + type
+  + validation
+- separate app & server
+To separate concern between API declaration and networking concern
+2. Error Handling
+Distinguish Programmer and operational error. Exit if programmer error to avoid unpredictable behaviour. Handling error centrally to avoid wrong duplication
+3. Validate with both express-validator and mongoose?
 ```
 They compliment each other.
 Express validator to ensure clients sends is valid
