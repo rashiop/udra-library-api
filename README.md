@@ -193,7 +193,7 @@ yarn dev
 - [x] Logging
 - [x] Authorization
 - [x] Authentication
-- [ ] Input Validation
+- [x] User Input Validation
 - [ ] Cron
 - [ ] Cache
 - [ ] Socket
