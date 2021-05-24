@@ -1,10 +1,9 @@
 import { model, Schema } from 'mongoose';
 
 import { ActiveStatus } from '../../helper/activeStatus';
-import { initError } from './genre.constant';
+import { error } from './genre.constant';
 import { IGenre, IGenreDoc, IGenreModel } from './genre.type';
 
-const error = initError()
 const schemaFields: Record<keyof IGenre, any> = {
   name: {
     type: String,

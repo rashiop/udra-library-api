@@ -200,3 +200,14 @@ yarn dev
 - [ ] Message broker
 - [ ] Testing
 
+
+### WHY?
+1. Validate with both express-validator and mongoose?
+```
+They compliment each other.
+Express validator to ensure clients sends is valid
+and mongoose schema to ensure our data is in right shape.
+
+Also validating the client data as soon as possible is good for security and performance before hitting the database.
+```
+

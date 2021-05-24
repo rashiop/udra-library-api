@@ -8,4 +8,4 @@ const errorLanguage = {
   }
 }
 
-export const initError = () => errorLanguage[config.language]
+export const error = errorLanguage[config.language]

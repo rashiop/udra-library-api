@@ -6,6 +6,7 @@ const errorLanguage = {
     firstNameMaxLength: 'Firstname must be less than 1000 characters',
     lastNameRequired: 'Lastname must be filled',
     lastNameMaxLength: 'Lastname must be less than 1000 characters',
+    idRequired: 'Author ID must be choosen'
   }
 }
 export const error = errorLanguage[config.language]
