@@ -4,6 +4,70 @@
 ### What
 Library API to facilitate book borrowing system.
 
+### Run development
+1. Installing the depedencies
+```
+yarn
+```
+2. Run the apps
+```
+yarn dev
+```
+
+### Folder Structure
+```
+├── src
+|   ├── @types                            #  3rd party d.ts files and for extending types
+|   |   ├── custom-env.d.ts 
+|   |   ├── express.d.ts 
+|   ├── helper
+|   |   ├── crud
+|   |   |   ├── crud.constant.ts
+|   |   |   ├── crud.controller.ts
+|   |   |   ├── crud.DAL.ts
+|   |   |   ├── index.ts
+|   |   ├── activeStatus.ts
+|   ├── lib
+|   |   ├── errorManagement               
+|   |   |   ├── appError.ts                 # error class, to string
+|   |   |   ├── commonErrors.ts             # extends AppError 
+|   |   |   ├── error.type.ts            
+|   |   |   ├── handler.ts                  # if error logs, if not operational (programmer error) to avoid unpredictable behaviour  
+|   |   |   ├── index.ts 
+|   |   |   ├── operationalErrorDecider.ts  # decide error is operational or not
+|   |   ├── logger 
+|   |   |   ├── index.ts 
+|   |   |   ├── logger.config.ts    
+|   |   |   ├── logger.constants.ts 
+|   |   ├── auth.ts 
+|   |   ├── db.ts 
+|   ├── resources                          # resource to support routes, every route has constant, controller, model, route, and types 
+|   |   ├── author
+|   |   |   ├── author.constant.ts         # languages etc
+|   |   |   ├── author.controller.ts       
+|   |   |   ├── author.model.ts            
+|   |   |   ├── author.route.ts
+|   |   |   ├── author.type.ts
+|   |   ├── book                           
+|   |   ├── bookTransactions               
+|   |   ├── fine
+|   |   ├── genre
+|   |   ├── publisher
+|   |   ├── user
+|   ├── app.ts                             # api declaration
+|   ├── config.ts
+|   ├── server.ts                          # networking concern (start server, connecting to db)
+├── .env.development
+├── .env.production
+├── .env.staging
+├── .eslintrc
+├── .gitignore
+├── .gitignore
+├── package.json
+├── tsconfig.json
+├── yarn.lock
+```
+
 ---
 ### Tables
 ##### 1. User

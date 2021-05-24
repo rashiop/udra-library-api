@@ -1,4 +1,3 @@
-// const util = require('util');
 import { Logger } from '../logger';
 import operationalErrorDecider from './operationalErrorDecider';
 
