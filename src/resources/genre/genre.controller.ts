@@ -1,4 +1,4 @@
-import { crudControllers } from '../../helper/crud';
+import { crudController } from '../../helper';
 import Genre from './genre.model';
 
-export default crudControllers(Genre);
+export default crudController(Genre);

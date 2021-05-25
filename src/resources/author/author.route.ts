@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import validateController from '../../helper/validate';
+import { validateController } from '../../helper';
 import { checkPermissionRole } from '../../lib/auth';
 import { Role } from '../user';
 import authorController from './author.controller';

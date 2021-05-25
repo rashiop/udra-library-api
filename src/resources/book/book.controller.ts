@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { crudControllers } from '../../helper/crud';
+import { crudController } from '../../helper';
 import Book from './book.model';
 
 export const getOneById = async(req: Request, res: Response) => {
@@ -26,4 +26,4 @@ export const getMany = async(_: Request, res: Response) => {
   }
 }
 
-export default crudControllers(Book)
+export default crudController(Book)

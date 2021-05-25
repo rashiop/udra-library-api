@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import validateController from '../../helper/validate';
+import { validateController } from '../../helper';
 import { checkPermissionLogedInUser, checkPermissionRole } from '../../lib/auth';
 import { Role } from '../user';
 import bookTransactionController, { getMyTransaction, returnBook } from './bookTransaction.controller';

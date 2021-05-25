@@ -1,1 +1,3 @@
-export { crudControllers } from './crud.controller'
+import crudController from './crud.controller';
+
+export default crudController;

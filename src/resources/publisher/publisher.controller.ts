@@ -1,4 +1,4 @@
-import { crudControllers } from '../../helper/crud';
+import { crudController } from '../../helper';
 import Publisher from './publisher.model';
 
-export default crudControllers(Publisher);
+export default crudController(Publisher);

@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 import { error } from './fine.constant';
 import { IFine, IFineDoc, IFineModel } from './fine.type';
 

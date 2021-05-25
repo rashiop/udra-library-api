@@ -1,6 +1,6 @@
 import { Document, Model } from 'mongoose';
 
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 
 // https://hackernoon.com/how-to-link-mongoose-and-typescript-for-a-single-source-of-truth-94o3uqc
 

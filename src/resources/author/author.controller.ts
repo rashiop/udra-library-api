@@ -1,4 +1,4 @@
-import { crudControllers } from '../../helper/crud';
+import { crudController } from '../../helper';
 import Author from './author.model';
 
-export default crudControllers(Author, { virtuals: true });
+export default crudController(Author, { virtuals: true });

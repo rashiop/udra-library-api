@@ -84,7 +84,7 @@ export const removeOne = (Datasource: IDataAccess) => async(req: Request, res: R
   }
 };
 
-export const crudControllers = (model: Model<any>, options={}) => {
+export const crudController = (model: Model<any>, options={}) => {
   const Datasource = new DAL(model, options);
 
   return {
@@ -96,3 +96,5 @@ export const crudControllers = (model: Model<any>, options={}) => {
     createOne: createOne(Datasource)
   }
 }
+
+export default crudController;

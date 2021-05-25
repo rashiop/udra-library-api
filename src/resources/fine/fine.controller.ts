@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 
-import { ActiveStatus } from '../../helper/activeStatus';
-import { crudControllers } from '../../helper/crud';
+import { ActiveStatus, crudController } from '../../helper';
 import { commonErrors } from '../../lib/errorManagement';
 import { error } from './fine.constant';
 import Fine from './fine.model';
@@ -37,4 +36,4 @@ export const deactiveFine = async (req: Request, res: Response) => {
   }
 };
 
-export default crudControllers(Fine);
+export default crudController(Fine);

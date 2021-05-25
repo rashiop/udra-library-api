@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { model, Schema, Types } from 'mongoose';
 
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 import { Book } from '../book';
 import { Fine } from '../fine';
 import { error } from './bookTransaction.constant';

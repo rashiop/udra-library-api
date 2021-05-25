@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 import { error } from './genre.constant';
 import { IGenre, IGenreDoc, IGenreModel } from './genre.type';
 

@@ -2,7 +2,7 @@ import moment from 'moment';
 import { model, Schema } from 'mongoose';
 import mongooseLeanVirtuals from 'mongoose-lean-virtuals';
 
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 import { authorUrl, error } from './author.constant';
 import { IAuthor, IAuthorDoc, IAuthorModel } from './author.type';
 

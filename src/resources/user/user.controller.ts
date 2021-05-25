@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { crudControllers } from '../../helper/crud';
+import { crudController } from '../../helper';
 import User from './user.model';
 
 export const me = (req: Request, res: Response) => {
@@ -25,4 +25,4 @@ export const getUser = async(req: Request, res: Response) => {
   }
 }
 
-export default crudControllers(User)
+export default crudController(User)

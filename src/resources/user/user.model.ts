@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
 
 import config from '../../config';
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 import { Gender, IUser, IUserDoc, IUserModel, Role } from './user.type';
 
 

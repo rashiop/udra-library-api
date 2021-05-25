@@ -1,6 +1,6 @@
 import { Document, Model, Types } from 'mongoose';
 
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 
 interface IBookTransaction {
   book: Types.ObjectId;

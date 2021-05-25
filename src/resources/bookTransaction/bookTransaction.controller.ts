@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
+import { crudController } from '../../helper';
 import { ActiveStatus, getActiveStatus } from '../../helper/activeStatus';
-import { crudControllers } from '../../helper/crud';
 import { commonErrors } from '../../lib/errorManagement';
 import { error } from './bookTransaction.constant';
 import BookTransaction from './bookTransaction.model';
@@ -46,4 +46,4 @@ export const getUserTransaction = async (req: Request, res: Response) => {
   }
 }
 
-export default crudControllers(BookTransaction)
+export default crudController(BookTransaction)

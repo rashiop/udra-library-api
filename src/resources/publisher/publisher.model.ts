@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { ActiveStatus } from '../../helper/activeStatus';
+import { ActiveStatus } from '../../helper';
 import { error } from './publisher.constant';
 import { IPublisher, IPublisherDoc, IPublisherModel } from './publisher.type';
 
