@@ -14,3 +14,5 @@ async function start() {
     console.error(e)
   }
 }
+
+export default app;

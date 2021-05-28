@@ -15,7 +15,7 @@ import { genreRouter } from './resources/genre';
 import { publisherRouter } from './resources/publisher';
 import { userRouter } from './resources/user';
 
-export const app = express()
+const app = express()
 
 new ChaosMonkey(app, require('./lib/chaosMonkey') ).start();
 
@@ -45,4 +45,7 @@ app.use((err, _req, res, next) => {
 })
 
 
-// app.use('*', (_req, res) => res.status(404).end())
+app.use('*', (_req, res) => res.status(404).end())
+
+
+export default app
