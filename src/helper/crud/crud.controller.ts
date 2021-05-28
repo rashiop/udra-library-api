@@ -36,6 +36,7 @@ export const getMany = (Datasource: IDataAccess) => async(req: Request, res: Res
     const data = await Datasource.getMany(req.query || {});
     return res.status(200).json({ data, message: success.fetch });
   } catch (ex) {
+    console.log(ex)
     return next(ex);
   }
 };
