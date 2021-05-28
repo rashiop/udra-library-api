@@ -6,10 +6,7 @@
   "author": "rashiop <red.alpacca@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "copy-files:vercel": "cp -r ./vercel/* dist/",
-    "build": "tsc && sleep 15",
-    "postbuild": "npm run copy-files:vercel",
-    "start": "NODE_ENV=production yarn build && nodemon dist/api/index.js ",
+    "start": "NODE_ENV=production nodemon vercel/api/index.js",
     "dev": "NODE_ENV=development ts-node-dev src/server.ts",
     "stg": "NODE_ENV=staging ts-node-dev src/server.ts",
     "prod": "NODE_ENV=production ts-node-dev src/server.ts",
