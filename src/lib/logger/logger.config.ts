@@ -1,7 +1,7 @@
 import winston from 'winston';
 
 import config from '../../config';
-import { COLORS, LEVELS } from './logger.constants';
+import { COLORS, LEVELS } from './logger.constant';
 
 winston.addColors(COLORS)
 
