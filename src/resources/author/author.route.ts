@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { validateController } from '../../helper';
-import { checkPermissionRole } from '../../lib/auth';
+import { checkPermissionRole, protect } from '../../lib/auth';
 import { Role } from '../user';
 import authorController from './author.controller';
 import validate from './author.validation';
@@ -14,6 +14,7 @@ router
   .post(
     validate.saveAuthor,
     validateController(),
+    protect,
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     authorController.createOne
   )
@@ -24,10 +25,12 @@ router
   .put(
     validate.saveAuthor,
     validateController(),
+    protect,
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     authorController.updateOne
   )
   .delete(
+    protect,
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     authorController.removeOne
   )

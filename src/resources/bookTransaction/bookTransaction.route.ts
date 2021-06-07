@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { validateController } from '../../helper';
-import { checkPermissionLogedInUser, checkPermissionRole } from '../../lib/auth';
+import { checkPermissionLoginUser, checkPermissionRole } from '../../lib/auth';
 import { Role } from '../user';
 import bookTransactionController, { getMyTransaction, returnBook } from './bookTransaction.controller';
 import validate from './bookTransaction.validation';
@@ -11,7 +11,7 @@ const router = Router();
 router
   .route('/')
   .get(
-    checkPermissionLogedInUser(Role.ADMIN, Role.SUPER_ADMIN),
+    checkPermissionLoginUser(Role.ADMIN, Role.SUPER_ADMIN),
     bookTransactionController.getMany
   )
   .post(
@@ -25,7 +25,7 @@ router
   .patch(
     validate.saveBookTransaction,
     validateController(),
-    checkPermissionLogedInUser(Role.ADMIN, Role.SUPER_ADMIN),
+    checkPermissionLoginUser(Role.ADMIN, Role.SUPER_ADMIN),
     returnBook
   )
 
@@ -43,7 +43,7 @@ router
 router
   .route('/:id')
   .get(
-    checkPermissionLogedInUser(Role.ADMIN, Role.SUPER_ADMIN),
+    checkPermissionLoginUser(Role.ADMIN, Role.SUPER_ADMIN),
     bookTransactionController.getOneById
   )
   .patch(
