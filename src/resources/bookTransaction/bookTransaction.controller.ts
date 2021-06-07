@@ -14,13 +14,15 @@ export const returnBook = async (req: Request, res: Response) => {
       _id: transactionId,
       active_status: ActiveStatus.A
     })
+
     if (!transaction) {
       throw commonErrors.ResourceNotFoundError({ message: error.transactionNotFound })
     }
+  
     const returnedBook = await transaction.returnBook(userId);
     return res.status(200).json({ data: returnedBook })
-  } catch (ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString() })
+  } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true })
   }
 }
 
@@ -30,8 +32,8 @@ export const getMyTransaction = async (req: Request, res: Response) => {
     const activeStatus = getActiveStatus(req.query.active_status)
     const transactions = await BookTransaction.getByUserId(userId, activeStatus)
     return res.status(200).json({ data: transactions })
-  } catch (ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString() })
+  } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true })
   }
 }
 
@@ -41,8 +43,8 @@ export const getUserTransaction = async (req: Request, res: Response) => {
     const activeStatus = getActiveStatus(req.query.active_status)
     const transactions = await BookTransaction.getByUserId(userId, activeStatus)
     return res.status(200).json({ data: transactions || [] })
-  } catch (ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString() })
+  } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true })
   }
 }
 

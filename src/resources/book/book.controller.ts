@@ -8,10 +8,10 @@ export const getOneById = async(req: Request, res: Response) => {
     const bookId = req.params.id;
     const book = await Book.getOneById(bookId)
     return res.status(200).json({ data: book })
-  } catch(ex) {
+  } catch({ httpCode = 400, message }) {
     return res
-      .status(ex.httpCode || 400)
-      .json({ error: ex.message || ex.toString() })
+      .status(httpCode)
+      .json({ message, error: true })
   }
 }
 
@@ -19,10 +19,10 @@ export const getMany = async(_: Request, res: Response) => {
   try {
     const books = await Book.getMany();
     return res.status(200).json({ data: books })
-  } catch(ex) {
+  } catch({ httpCode = 400, message }) {
     return res
-      .status(ex.httpCode || 400)
-      .json({ error: ex.message || ex.toString() })
+      .status(httpCode)
+      .json({ message, error: true })
   }
 }
 

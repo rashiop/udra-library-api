@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { Model } from 'mongoose';
 
 import { commonErrors } from '../../lib/errorManagement';
@@ -10,8 +10,8 @@ export const getOne = (Datasource: IDataAccess) => async(req: Request, res: Resp
   try {
     const data = Datasource.getOne(req.params);
     return res.status(200).json({ data, message: success.fetch });
-  } catch(ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString(), error: true });
+    } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true });
   }
 }
 
@@ -26,18 +26,17 @@ export const getOneById = (Datasource: IDataAccess) => async(req: Request, res: 
     throw commonErrors.InvalidInputError({
         message: error.idRequired
       })
-  } catch(ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString(), error: true });
+    } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true });
   }
 }
 
-export const getMany = (Datasource: IDataAccess) => async(req: Request, res: Response, next: NextFunction) => {
+export const getMany = (Datasource: IDataAccess) => async(req: Request, res: Response) => {
   try {
     const data = await Datasource.getMany(req.query || {});
     return res.status(200).json({ data, message: success.fetch });
-  } catch (ex) {
-    console.log(ex)
-    return next(ex);
+  } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true });
   }
 };
 
@@ -46,8 +45,8 @@ export const createOne = (Datasource: IDataAccess) => async(req: Request, res: R
   try {
     const data = await Datasource.createOne(req.body || {}, creator);
     return res.status(201).json({ data, message: success.create });
-  } catch (ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toStirng() }).end();
+  } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true });
   }
 };
 
@@ -63,8 +62,8 @@ export const updateOne = (Datasource: IDataAccess) => async(req: Request, res: R
     }
 
     return res.status(200).json({ data: updatedDoc, message: success.update });
-  } catch (ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString(), error: true });
+  } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true });
   }
 };
 
@@ -80,8 +79,8 @@ export const removeOne = (Datasource: IDataAccess) => async(req: Request, res: R
       message: error.idRequired
     })
 
-  } catch (ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString(), error: true });
+  } catch ({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true });
   }
 };
 

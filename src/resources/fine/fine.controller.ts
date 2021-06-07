@@ -9,8 +9,8 @@ export const getCurrentFine = async (_: Request, res: Response) => {
   try {
     const fine = await Fine.getLatestFine();
     return res.status(200).json({ data: fine })
-  } catch(ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString() })
+  } catch({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true })
   }
 };
 
@@ -31,8 +31,8 @@ export const deactiveFine = async (req: Request, res: Response) => {
     }
 
     return res.status(200).json({ data: fine.amount || 0 })
-  } catch(ex) {
-    return res.status(ex.httpCode || 400).json({ message: ex.message || ex.toString() })
+  } catch({ httpCode = 400, message }) {
+    return res.status(httpCode).json({ message, error: true })
   }
 };
 
