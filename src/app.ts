@@ -4,7 +4,7 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 
-import { protect, signin, signup } from './lib/auth';
+import { authRouter, protect } from './lib/auth';
 import errorHandler from './lib/errorManagement/handler';
 import morganMiddleware from './lib/logger/morgan';
 import { authorRouter } from './resources/author';
@@ -26,10 +26,9 @@ app.use(urlencoded({ extended: true}))
 app.use(morganMiddleware)
 
 
-app.use('/signin', signin)
-app.use('/signup', signup)
 
-// app.use('/api/', protect)
+app.use('/', authRouter)
+
 app.use('/api/v1/author', authorRouter)
 app.use('/api/v1/book', bookRouter)
 app.use('/api/v1/fine', protect, fineRouter)
