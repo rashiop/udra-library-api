@@ -39,7 +39,12 @@ yarn dev
 |   |   |   ├── index.ts 
 |   |   |   ├── logger.config.ts    
 |   |   |   ├── logger.constants.ts 
-|   |   ├── auth.ts 
+|   |   ├── auth
+|   |   |   ├── index.ts 
+|   |   |   ├── auth.constant.ts 
+|   |   |   ├── auth.controller.ts 
+|   |   |   ├── auth.route.ts 
+|   |   |   ├── auth.validation.ts 
 |   |   ├── db.ts 
 |   ├── resources                          # resource to support routes, every route has constant, controller, model, route, and types 
 |   |   ├── author
