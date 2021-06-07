@@ -1,12 +1,12 @@
 import AppError from './appError';
 import { ErrorName, ErrorStatus, ICreateError } from './error.type';
 
-function createError({
+const createError = ({
   message,
   name,
   innerException,
   errType = ErrorName.UnknownError,
-}: ICreateError) {
+}: ICreateError) => {
   return new AppError({
     message,
     name: name || ErrorName[errType],

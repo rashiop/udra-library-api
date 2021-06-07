@@ -1,21 +1,20 @@
 
 // const logger = morgan('dev')
 
-export default operationalErrorDecider;
 
 //this object is responsible to run various rules on an error object and decide whether it's familiar and probably operational
 //many packages throw non-classified errors though it's hard to determine whether the error is safe/operational - this place allow to run those decision rules
-function operationalErrorDecider(error): boolean {
+const operationalErrorDecider = (error): boolean => {
   return isOperationalError(error);
 }
 
-function isOperationalError(error): boolean {
+const isOperationalError = (error): boolean => {
   const rules = getAllRules(error);
   return rules.some((rule) => rule);
 }
 
 
-function getAllRules(error): boolean[] {
+const getAllRules = (error): boolean[] => {
   if (!error) return [];
   
   const allRules: boolean[] = [];
@@ -27,3 +26,5 @@ function getAllRules(error): boolean[] {
   // mongoose driver
   return allRules;
 };
+
+export default operationalErrorDecider;
