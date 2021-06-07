@@ -28,11 +28,6 @@ export type IError = {
   innerException: string
 }>
 
-// export type IErrorType = {
-//   httpCode: ErrorStatus | number,
-//   name: keyof ErrorStatus | string,
-// }
-
 export type ICreateError = {
   message: string,
   errType: keyof ErrorStatus | string

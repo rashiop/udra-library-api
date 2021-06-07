@@ -7,8 +7,6 @@ const saveAuthor = [
   body('last_name', error.lastNameRequired).exists(),
 ]
 
-
-
 export default {
   saveAuthor
 }
