@@ -1,13 +1,13 @@
 import customEnv from 'custom-env';
 
-const inDeployment = Boolean(process.env.VERCEL_ENV)
+const inDeployment = Boolean(process.env.NODE_ENV)
 if (customEnv && !inDeployment) {
   customEnv.env(true)
 }
 
 export default {
     env: process.env.NODE_ENV || 'development',
-    port: process.env.PORT || 8000,
+    port: process.env.PORT || 8080,
     language: process.env.DEFAULT_LANGUAGE || 'en',
     dbUri: process.env.DB_URL || '',
     secrets: {

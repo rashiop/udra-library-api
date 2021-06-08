@@ -15,4 +15,3 @@ async function start() {
   }
 }
 
-export default app;
