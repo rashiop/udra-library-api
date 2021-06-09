@@ -199,7 +199,7 @@ yarn dev
 - [x] Authorization
 - [x] Authentication
 - [x] User Input Validation
-- [ ] Deploy
+- [x] Deploy
 - [ ] Cron
 - [ ] Cache
 - [ ] Socket
@@ -234,4 +234,5 @@ and mongoose schema to ensure our data is in right shape.
 
 Also validating the client data as soon as possible is good for security and performance before hitting the database.
 ```
-
+4. Testing with jest
+[source](https://basarat.gitbook.io/typescript/intro-1/jest)
