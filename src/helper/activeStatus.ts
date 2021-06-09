@@ -4,7 +4,7 @@ enum ActiveStatus {
   D = 'deleted'
 }
 
-const getActiveStatus = (active_status) => {
+const getActiveStatus = (active_status: string = '') => {
   if (active_status != ActiveStatus.A && active_status !== ActiveStatus.D) {
     return ActiveStatus.A;
   }

@@ -12,10 +12,9 @@
     "stg": "NODE_ENV=staging ts-node-dev src/server.ts",
     "prod": "NODE_ENV=production ts-node-dev src/server.ts",
     "lint": "eslint src --ext js,ts",
-    "test": "NODE_ENV=testing jest"
+    "test": "NODE_ENV=testing NODE_OPTIONS=--experimental-vm-modules npx jest --detectOpenHandles"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "chaos-monkey": "0.7.0",
@@ -36,6 +35,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-typescript": "^7.13.0",
@@ -52,16 +52,18 @@
     "@types/mongoose": "^5.10.5",
     "@types/morgan": "^1.9.2",
     "@types/node": "^15.6.0",
+    "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "babel-jest": "^27.0.1",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-security": "^1.4.0",
-    "jest": "^27.0.1",
+    "jest": "^27.0.4",
+    "mock-req-res": "^1.2.0",
     "source-map-support": "^0.5.19",
     "supertest": "^6.1.3",
     "trim-newlines": "^4.0.1",
+    "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.4"
