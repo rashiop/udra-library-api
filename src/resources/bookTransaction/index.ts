@@ -4,3 +4,4 @@ export {
   IBookTransactionDoc,
   IBookTransactionModel
 } from './bookTransaction.type'
+export { default as BookTransaction } from './bookTransaction.model';

@@ -4,3 +4,4 @@ export {
   IPublisherDoc,
   IPublisherModel
 } from './publisher.type'
+export { default as Publisher } from './publisher.model'

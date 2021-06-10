@@ -4,3 +4,4 @@ export {
   IAuthorDoc,
   IAuthorModel
 } from './author.type'
+export { default as Author } from './author.model'

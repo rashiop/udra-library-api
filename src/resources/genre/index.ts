@@ -4,3 +4,4 @@ export {
   IGenreDoc,
   IGenreModel
 } from './genre.type'
+export { default as Genre } from './genre.model'

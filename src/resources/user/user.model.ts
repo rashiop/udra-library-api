@@ -86,6 +86,6 @@ UserSchema.method({
 })
 
 
-const User = model<IUserDoc, IUserModel>('User', UserSchema);
+const User = model<IUserDoc, IUserModel>('User', UserSchema, undefined, config.env === 'testing');
 
 export default User;

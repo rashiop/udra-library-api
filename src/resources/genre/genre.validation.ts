@@ -6,8 +6,6 @@ const saveGenre = [
   body('name', error.nameRequired).exists(),
 ]
 
-
-
 export default {
   saveGenre
 }

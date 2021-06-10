@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 
+import config from '../../config';
 import { ActiveStatus } from '../../helper';
 import { error } from './genre.constant';
 import { IGenre, IGenreDoc, IGenreModel } from './genre.type';
@@ -27,6 +28,6 @@ const genreSchema: Schema<IGenreDoc> = new Schema(schemaFields,
 
 genreSchema.index({ name: 1 }, { unique: true })
 
-const Genre = model<IGenreDoc, IGenreModel>('Genre', genreSchema)
+const Genre = model<IGenreDoc, IGenreModel>('Genre', genreSchema, undefined, config.env == 'testing')
 
 export default Genre;
