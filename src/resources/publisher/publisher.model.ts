@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 
+import config from '../../config';
 import { ActiveStatus } from '../../helper';
 import { error } from './publisher.constant';
 import { IPublisher, IPublisherDoc, IPublisherModel } from './publisher.type';
@@ -27,6 +28,6 @@ const publisherSchema: Schema<IPublisherDoc> = new Schema(schemaFields,
 
 publisherSchema.index({ name: 1 }, { unique: true })
 
-const Publisher = model<IPublisherDoc, IPublisherModel>('Publisher', publisherSchema)
+const Publisher = model<IPublisherDoc, IPublisherModel>('Publisher', publisherSchema, undefined, config.skipInitDb)
 
 export default Publisher;

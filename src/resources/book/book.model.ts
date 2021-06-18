@@ -1,5 +1,6 @@
 import { model, Schema, Types } from 'mongoose';
 
+import config from '../../config';
 import { bookUrl, error } from './book.constant';
 import { ActiveStatus, IBook, IBookDoc, IBookModel } from './book.type';
 
@@ -91,6 +92,6 @@ bookSchema.method({
 
 bookSchema.index({ title: 1 }, { unique: true })
 
-const Book = model<IBookDoc, IBookModel>('Book', bookSchema)
+const Book = model<IBookDoc, IBookModel>('Book', bookSchema, undefined, config.skipInitDb)
 
 export default Book;

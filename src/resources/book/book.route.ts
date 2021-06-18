@@ -22,7 +22,7 @@ router
 router
   .route('/:id')
   .get(getOneById)
-  .patch(
+  .put(
     validate.saveBook,
     validateController(),
     protect,

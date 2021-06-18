@@ -14,6 +14,7 @@ export default {
       useUnifiedTopology: true,
       useCreateIndex: true
     },
+    skipInitDb: process.env.NODE_ENV === "testing",
     secrets: {
         jwt: process.env.JWT_SECRET || 'secret',
         jwt_exp: '100d',

@@ -28,6 +28,6 @@ const genreSchema: Schema<IGenreDoc> = new Schema(schemaFields,
 
 genreSchema.index({ name: 1 }, { unique: true })
 
-const Genre = model<IGenreDoc, IGenreModel>('Genre', genreSchema, undefined, config.env == 'testing')
+const Genre = model<IGenreDoc, IGenreModel>('Genre', genreSchema, undefined, config.skipInitDb)
 
 export default Genre;

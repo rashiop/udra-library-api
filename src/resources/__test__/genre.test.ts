@@ -6,7 +6,7 @@ import { IUserDoc, User } from '../../resources/user';
 import { Gender, Role } from '../../resources/user/user.type';
 import app from '../../server';
 
-describe('CRUD Controllers', () => {
+describe('Genre', () => {
   let user: IUserDoc;
   let auth: string;
 
@@ -25,9 +25,9 @@ describe('CRUD Controllers', () => {
     app.close();
   });
 
-  afterAll(() => {
-    mongoose.connection.db.dropDatabase();
-    mongoose.connection.close();
+  afterAll(async () => {
+    await mongoose.connection.db.dropDatabase();
+    await mongoose.connection.close();
     mongoose.disconnect();
     app.close();
   });
@@ -37,8 +37,8 @@ describe('CRUD Controllers', () => {
     app.close()
   })
   
-  describe('createOne', () => {
-    it('Should create new item successfully', async () => {
+  describe('create one genre', () => {
+    it('Should create new genre successfully', async () => {
       const newGenre = {
         name: 'Isekai',
         created_by: user._id,
@@ -52,10 +52,10 @@ describe('CRUD Controllers', () => {
         .expect(201);
       expect(savedGenre.body.data.name).toEqual(newGenre.name);
 
-      // app.close();
+      app.close();
     });
 
-    it('Should failed to create item', async () => {
+    it('Should failed to create new genre', async () => {
       const newGenre = {}
 
       const savedGenre = await supertest(app)
@@ -65,12 +65,12 @@ describe('CRUD Controllers', () => {
         .expect(400);
       expect(savedGenre.body.error).toEqual(true);
 
-      // app.close();
+      app.close();
     });
   })
 
-  describe('Update One', () => {
-    it('Should update item successfully', async () => {
+  describe('Update One Genre', () => {
+    it('Admin should update genre successfully', async () => {
       const oldGenre = {
         name: 'Isekai',
         created_by: user._id,
@@ -89,12 +89,12 @@ describe('CRUD Controllers', () => {
         .expect(200);
       expect(updatedGenre.body.data.name).toEqual(newGenre.name);
 
-      // app.close();
+      app.close();
     });
   })
 
-  describe('Remove One', () => {
-    it('Should remove one item successfully', async () => {
+  describe('Remove One Genre', () => {
+    it('Admin should remove one genre successfully', async () => {
       const newGenre = {
         name: 'Isekai',
         created_by: user._id,
@@ -108,12 +108,12 @@ describe('CRUD Controllers', () => {
         .expect(200);
       expect(deletedGenre.body.data.name).toEqual(savedGenre.name);
 
-      // app.close();
+      app.close();
     });
   })
 
-  describe('GET one by id', () => {
-    it('Should get one item successfully', async () => {
+  describe('Get genre by id', () => {
+    it('Should get one genre successfully', async () => {
       const newGenre = {
         name: 'Isekai',
         created_by: user._id,
@@ -129,8 +129,8 @@ describe('CRUD Controllers', () => {
     });
   })
 
-  describe('GET many', () => {
-    it('Should get array of items successfully', async () => {
+  describe('GET all genre', () => {
+    it('Should get array of genres successfully', async () => {
       const newGenre = {
         name: 'Isekai',
         created_by: user._id,
@@ -151,6 +151,4 @@ describe('CRUD Controllers', () => {
       app.close();
     });
   })
-  
-
 })

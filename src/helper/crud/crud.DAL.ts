@@ -44,7 +44,7 @@ class DataAccess implements IDataAccess {
 
   async updateOne(id, updatedData) {
     const updateOptions = { new: true, runValidators: true }
-    return await this._model.findByIdAndUpdate(id, updatedData, updateOptions)
+    return await this._model.findByIdAndUpdate(id, updatedData, updateOptions).lean(this._options).exec()
   }
 
   async removeOne(id) {
