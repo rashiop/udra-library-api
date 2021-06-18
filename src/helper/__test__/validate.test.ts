@@ -21,8 +21,8 @@ describe('Helper Validate Request', () => {
 
   beforeAll(async() => { 
     [admin, authAdmin] = await createUser({
-      firstname: 'Pureo',
-      lastname: "Puwawa",
+      first_name: 'Pureo',
+      last_name: "Puwawa",
       email: 'pureo.puwawa@kucing.com',
       password: 'puwawa',
       role: Role.ADMIN,
@@ -30,8 +30,8 @@ describe('Helper Validate Request', () => {
     });
 
     [user, authUser] = await createUser({
-      firstname: 'Whitey',
-      lastname: "Puwawa",
+      first_name: 'Whitey',
+      last_name: "Puwawa",
       email: 'whitey.puwawa@kucing.com',
       password: 'puwawa',
       role: Role.USER,

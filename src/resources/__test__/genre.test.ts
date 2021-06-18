@@ -12,8 +12,8 @@ describe('Genre', () => {
 
   beforeAll(async () => {
     const userData = {
-      firstname: 'Pureo',
-      lastname: "Puwawa",
+      first_name: 'Pureo',
+      last_name: "Puwawa",
       email: 'pureo.puwawa@kucing.com',
       password: 'puwawa',
       role: Role.ADMIN,

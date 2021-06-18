@@ -17,11 +17,11 @@ const schemaFields: Record<keyof IUser, any> = {
     required: true,
     type: String,
   },
-  firstname: {
+  first_name: {
     required: true,
     type: String,
   },
-  lastname: String,
+  last_name: String,
   gender: {
     default: Gender.MALE,
     enum: Gender,
@@ -72,7 +72,7 @@ UserSchema.pre<IUserDoc>('save', async function hashPassword() {
 })
 
 UserSchema.virtual("fullname").get(function getFullname(this: IUserDoc) {
-  return this.firstname + ' ' + this.lastname
+  return this.first_name + ' ' + this.last_name
 })
 
 UserSchema.method({

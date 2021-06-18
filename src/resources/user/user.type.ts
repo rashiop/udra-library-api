@@ -20,8 +20,8 @@ enum Gender {
 interface IUser {
   email: string;
   password: string;
-  firstname: string;
-  lastname?: string;
+  first_name: string;
+  last_name?: string;
   gender: number;
   settings: {
     theme: string;
