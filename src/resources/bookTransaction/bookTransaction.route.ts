@@ -13,8 +13,7 @@ router
   .get(
     checkPermissionLoginUser(Role.ADMIN, Role.SUPER_ADMIN),
     bookTransactionController.getMany
-  )
-  .post(
+  ).post(
     validate.saveBookTransaction,
     validateController(),
     bookTransactionController.createOne
@@ -45,12 +44,10 @@ router
   .get(
     checkPermissionLoginUser(Role.ADMIN, Role.SUPER_ADMIN),
     bookTransactionController.getOneById
-  )
-  .patch(
+  ).put(
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     bookTransactionController.updateOne
-  )
-  .delete(
+  ).delete(
     checkPermissionRole(Role.ADMIN, Role.SUPER_ADMIN),
     bookTransactionController.removeOne
   )
