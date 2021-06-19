@@ -12,7 +12,8 @@ export default {
     dbSetting: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false
     },
     skipInitDb: process.env.NODE_ENV === "testing",
     secrets: {
