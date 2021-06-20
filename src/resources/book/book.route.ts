@@ -3,14 +3,14 @@ import { Router } from 'express';
 import { validateController } from '../../helper';
 import { checkPermissionRole, protect } from '../../lib/auth';
 import { Role } from '../user';
-import bookController, { getMany, getOneById } from './book.controller';
+import bookController from './book.controller';
 import validate from './book.validation';
 
 const router = Router();
 
 router
   .route('/')
-  .get(getMany)
+  .get(bookController.getMany)
   .post(
     validate.saveBook,
     validateController(),
@@ -21,7 +21,7 @@ router
 
 router
   .route('/:id')
-  .get(getOneById)
+  .get(bookController.getOneById)
   .put(
     validate.saveBook,
     validateController(),
