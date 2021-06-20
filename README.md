@@ -24,7 +24,7 @@ yarn dev
 |   |   ├── crud
 |   |   |   ├── crud.constant.ts
 |   |   |   ├── crud.controller.ts
-|   |   |   ├── crud.DAL.ts
+|   |   |   ├── crud.DAL.ts                # depedency inversion to mongoose
 |   |   |   ├── index.ts
 |   |   ├── activeStatus.ts
 |   ├── lib
@@ -200,11 +200,11 @@ yarn dev
 - [x] Authentication
 - [x] User Input Validation
 - [x] Deploy
+- [x] Testing
 - [ ] Cron
-- [ ] Cache
+- [ ] [Cache](https://javascript.plainenglish.io/unit-testing-node-js-mongoose-using-jest-106a39b8393d)
 - [ ] Socket
 - [ ] Message broker
-- [ ] Testing
 - [ ] Document API using swagger
 
 
