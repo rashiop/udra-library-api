@@ -28,7 +28,7 @@ describe('User', () => {
   afterAll(async () => {
     await mongoose.connection.db.dropDatabase();
     await mongoose.connection.close()
-    mongoose.disconnect();
+    await mongoose.disconnect();
     app.close();
   });
 
