@@ -1,5 +1,5 @@
 export { default as authorRouter } from './author.route'
-export { 
+export {
   IAuthor,
   IAuthorDoc,
   IAuthorModel

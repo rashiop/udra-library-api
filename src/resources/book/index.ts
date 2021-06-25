@@ -1,6 +1,6 @@
 export { default as bookRouter } from './book.route'
 export { default as Book } from './book.model'
-export { 
+export {
   IBook,
   IBookDoc,
   IBookModel

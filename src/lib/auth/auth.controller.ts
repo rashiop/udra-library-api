@@ -11,7 +11,7 @@ const newToken = (user: IUserDoc) => {
   return jwt.sign({ userId }, jwtSecret, { expiresIn })
 }
 
-const verifyToken = async(token: string) => await jwt.verify(token, config.secrets.jwt)
+const verifyToken = async(token: string) => jwt.verify(token, config.secrets.jwt)
 
 const isValidUser = async (user: IUserDoc, password: string) => {
   if (user) {
@@ -105,5 +105,5 @@ export const checkPermissionLoginUser = (...permittedRoles: string[]) => {
 
 export default {
   signup,
-  signin 
+  signin
 }

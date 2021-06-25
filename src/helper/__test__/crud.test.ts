@@ -18,7 +18,7 @@ describe('CRUD Controllers', () => {
       password: 'puwawa',
       role: Role.ADMIN,
       gender: Gender.FEMALE
-    } 
+    }
     user = await User.create(userData);
     const token = await supertest(app).post('/signin').send(userData);
     auth = token.body.token;
@@ -123,7 +123,7 @@ describe('CRUD Controllers', () => {
       const genre = await supertest(app)
         .get(`/api/v1/genre/${savedGenre.id}`)
         .set('authorization', `Bearer ${auth}`)
-        .expect(200); 
+        .expect(200);
       expect(genre.body.data.name).toEqual(savedGenre.name);
       app.close();
     });
@@ -146,7 +146,7 @@ describe('CRUD Controllers', () => {
       const genre = await supertest(app)
         .get(`/api/v1/genre`)
         .set('authorization', `Bearer ${auth}`)
-        .expect(200); 
+        .expect(200);
       expect(genre.body.data.length).toEqual(2);
       app.close();
     });

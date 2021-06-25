@@ -12,11 +12,11 @@ interface IFine {
 interface IFineDoc extends IFine, Document {}
 
 interface IFineModel extends Model<IFineDoc> {
-  calcFine(days: number): number; 
-  getLatestFine(): number; 
+  calcFine(days: number): number;
+  getLatestFine(): number;
 }
 
-export { 
+export {
   IFine,
   IFineDoc,
   IFineModel

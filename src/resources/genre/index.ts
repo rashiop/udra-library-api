@@ -1,5 +1,5 @@
 export { default as genreRouter } from './genre.route'
-export { 
+export {
   IGenre,
   IGenreDoc,
   IGenreModel

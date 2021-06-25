@@ -20,7 +20,7 @@ describe('Author', () => {
       password: 'puwawa',
       role: Role.ADMIN,
       gender: Gender.FEMALE
-    } 
+    }
     user = await User.create(userData);
     const token = await supertest(app).post('/signin').send(userData);
     auth = token.body.token;
@@ -57,7 +57,7 @@ describe('Author', () => {
         .expect(201);
 
       expect(savedAuthor.first_name).toEqual(newAuthor.first_name);
-      expect(savedAuthor.active_status).toEqual(ActiveStatus.A);    
+      expect(savedAuthor.active_status).toEqual(ActiveStatus.A);
 
       app.close();
     });
@@ -179,7 +179,7 @@ describe('Author', () => {
       const { body: { data: author = {} } = {} } = await supertest(app)
         .get(`/api/v1/author`)
         .set('authorization', `Bearer ${auth}`)
-        .expect(200); 
+        .expect(200);
 
       expect(author.length).toEqual(2);
       

@@ -22,15 +22,15 @@ class DataAccess implements IDataAccess {
   }
 
   async getOne(filter) {
-    return await this._model.findOne(filter).lean(this._options).exec();
+    return this._model.findOne(filter).lean(this._options).exec();
   }
   
   async getOneById(id) {
-    return await this._model.findById(id).lean(this._options).exec();
+    return this._model.findById(id).lean(this._options).exec();
   }
 
   async getMany(filter) {
-    return await this._model.find(filter).lean(this._options).exec();
+    return this._model.find(filter).lean(this._options).exec();
   }
 
   async createOne(data, creator) {
@@ -39,17 +39,17 @@ class DataAccess implements IDataAccess {
       savedData.created_by = creator;
       savedData.updated_by = creator;
     }
-    return await this._model.create(savedData);
+    return this._model.create(savedData);
   }
 
   async updateOne(id, updatedData) {
     const updateOptions = { new: true, runValidators: true }
-    return await this._model.findByIdAndUpdate(id, updatedData, updateOptions).lean(this._options).exec()
+    return this._model.findByIdAndUpdate(id, updatedData, updateOptions).lean(this._options).exec()
   }
 
   async removeOne(id) {
     const data = { _id: id }
-    return await this._model.findOneAndRemove(data);
+    return this._model.findOneAndRemove(data);
   }
 
 }
