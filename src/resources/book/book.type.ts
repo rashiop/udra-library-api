@@ -31,7 +31,7 @@ interface IBookModel extends Model<IBookDoc> {
 
 }
 
-export { 
+export {
   ActiveStatus,
   IBook,
   IBookDoc,

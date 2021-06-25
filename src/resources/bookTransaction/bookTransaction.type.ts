@@ -22,7 +22,7 @@ interface IBookTransactionModel extends Model<IBookTransactionDoc> {
   getByUserId(userId: Types.ObjectId | string, active_status: ActiveStatus): IBookTransaction[] | null
 }
 
-export { 
+export {
   IBookTransaction,
   IBookTransactionDoc,
   IBookTransactionModel

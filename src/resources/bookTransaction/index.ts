@@ -1,5 +1,5 @@
 export { default as bookTransactionRouter } from './bookTransaction.route'
-export { 
+export {
   IBookTransaction,
   IBookTransactionDoc,
   IBookTransactionModel

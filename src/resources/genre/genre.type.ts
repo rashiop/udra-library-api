@@ -14,7 +14,7 @@ interface IGenreDoc extends IGenre, Document {
 
 interface IGenreModel extends Model<IGenreDoc> {}
 
-export { 
+export {
   IGenre,
   IGenreDoc,
   IGenreModel

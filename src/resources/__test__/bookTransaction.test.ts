@@ -59,8 +59,8 @@ describe('BookTransaction', () => {
         .set('authorization', `Bearer ${adminAuth}`)
         .send(transactionData)
         .expect(201);
-      expect(borrow.active_status).toEqual(ActiveStatus.A);   
-      app.close(); 
+      expect(borrow.active_status).toEqual(ActiveStatus.A);
+      app.close();
     })
     
     it('Guest should not able to borrow book', async() => {

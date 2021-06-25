@@ -19,7 +19,7 @@ describe('Helper Validate Request', () => {
   let user: IUserDoc;
   let authUser: string;
 
-  beforeAll(async() => { 
+  beforeAll(async() => {
     [admin, authAdmin] = await createUser({
       first_name: 'Pureo',
       last_name: "Puwawa",
@@ -63,7 +63,7 @@ describe('Helper Validate Request', () => {
       const genre = await supertest(app)
         .get(`/api/v1/genre/${savedGenre.id}`)
         .set('authorization', `Bearer ${authAdmin}`)
-        .expect(200); 
+        .expect(200);
       expect(genre.body.data.name).toEqual(savedGenre.name);
       
       app.close();

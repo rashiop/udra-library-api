@@ -17,7 +17,7 @@ interface IAuthorDoc extends IAuthor, Document {
 
 interface IAuthorModel extends Model<IAuthorDoc> {}
 
-export { 
+export {
   IAuthor,
   IAuthorDoc,
   IAuthorModel

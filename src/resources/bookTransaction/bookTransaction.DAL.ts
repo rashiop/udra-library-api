@@ -15,11 +15,11 @@ class DataAccess {
       throw commonErrors.ResourceNotFoundError({ message: error.transactionNotFound })
     }
     
-    return await transaction.returnBook(userId);
+    return transaction.returnBook(userId);
   }
 
   async getUserTransaction(userId) {
-    return await BookTransactionModel.getByUserId(userId, ActiveStatus.A)
+    return BookTransactionModel.getByUserId(userId, ActiveStatus.A)
   }
 }
 

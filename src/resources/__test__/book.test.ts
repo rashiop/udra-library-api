@@ -90,7 +90,7 @@ describe('Book', () => {
         .expect(201);
 
       expect(savedBook.title).toEqual(newBook.title);
-      expect(savedBook.active_status).toEqual(ActiveStatus.A);    
+      expect(savedBook.active_status).toEqual(ActiveStatus.A);
 
       app.close();
     });
@@ -231,7 +231,7 @@ describe('Book', () => {
       const { body: { data: book = {} } = {} } = await supertest(app)
         .get(`/api/v1/book`)
         .set('authorization', `Bearer ${auth}`)
-        .expect(200); 
+        .expect(200);
 
       expect(book.length).toEqual(2);
       

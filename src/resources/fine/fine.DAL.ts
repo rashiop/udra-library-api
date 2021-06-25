@@ -6,7 +6,7 @@ import FineModel from './fine.model';
 
 class DataAccess {
   async getCurrentFine() {
-    return await FineModel.getLatestFine()
+    return FineModel.getLatestFine()
   }
   
   async deactiveFine(fineId) {

@@ -13,7 +13,7 @@ interface IPublisherDoc extends IPublisher, Document {}
 
 interface IPublisherModel extends Model<IPublisherDoc> {}
 
-export { 
+export {
   IPublisher,
   IPublisherDoc,
   IPublisherModel

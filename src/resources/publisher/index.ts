@@ -1,5 +1,5 @@
 export { default as publisherRouter } from './publisher.route'
-export { 
+export {
   IPublisher,
   IPublisherDoc,
   IPublisherModel

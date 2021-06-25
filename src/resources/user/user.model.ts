@@ -81,7 +81,7 @@ UserSchema.method({
   },
   checkPassword: async function(this: IUserDoc, password: string) {
     const passwordHash = this.password;
-    return await bcrypt.compare(password, passwordHash);
+    return bcrypt.compare(password, passwordHash);
   }
 })
 

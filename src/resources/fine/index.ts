@@ -1,5 +1,5 @@
 export { default as fineRouter } from './fine.route'
-export { 
+export {
   IFine,
   IFineDoc,
   IFineModel
