@@ -27,7 +27,7 @@
     "helmet": "^4.5.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.12.5",
+    "mongoose": "^5.13.20",
     "mongoose-lean-virtuals": "^0.8.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
