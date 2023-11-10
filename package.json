@@ -15,7 +15,7 @@
     "test": "NODE_ENV=testing NODE_OPTIONS=--experimental-vm-modules npx jest --detectOpenHandles"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "bcrypt": "^5.0.1",
     "chaos-monkey": "0.7.0",
     "cors": "^2.8.5",
